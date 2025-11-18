@@ -1,4 +1,31 @@
-<div class="page">
-  <h2>Rutas</h2>
-  <p>Página de Rutas (vacía por ahora).</p>
+<div class="container">
+  <h2>Gestión de Rutas</h2>
+
+  <div class="form-group">
+    <input type="text" [(ngModel)]="nuevaRuta.nombre" placeholder="Nombre de la ruta" class="form-control">
+    <textarea [(ngModel)]="nuevaRuta.descripcion" placeholder="Descripción" class="form-control mt-2"></textarea>
+    <button (click)="crearRuta()" class="btn btn-success mt-2">Registrar Nueva Ruta</button>
+  </div>
+
+  <h3 class="mt-4">Rutas Existentes</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ruta of rutas">
+        <td>{{ ruta.id }}</td>
+        <td>{{ ruta.nombre }}</td>
+        <td>{{ ruta.descripcion }}</td>
+        <td>
+          <button (click)="eliminarRuta(ruta.id)" class="btn btn-sm btn-danger">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

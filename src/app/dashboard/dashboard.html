@@ -1,13 +1,14 @@
-<div class="sidebar">
-  <h3>Rutas</h3>
-  <ul>
-    <li *ngFor="let r of rutas">
-      {{ r.name || r.id }}
-      <button (click)="verRecorrido(r.id)">Ver</button>
-    </li>
-  </ul>
-</div>
-
-<div class="content">
-  <app-mapa></app-mapa>
+<div class="container">
+  <aside class="sidebar">
+    <h3>Rutas</h3>
+    <ul>
+      <li *ngFor="let r of rutas">
+        {{ r.name || r.id }}
+        <button (click)="verRecorrido(r.id)">Ver</button>
+      </li>
+    </ul>
+  </aside>
+  <main class="main">
+    
+  </main>
 </div>

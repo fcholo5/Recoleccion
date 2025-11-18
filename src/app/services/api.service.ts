@@ -1,24 +1,64 @@
+// src/app/services/api.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
-  base = environment.apiBase;
+  private apiUrl = 'http://apirecoleccion.gonzaloandreslucio.com/api';
 
   constructor(private http: HttpClient) {}
 
-  get<T>(path: string, params?: Record<string, any>): Observable<T> {
-    let p = new HttpParams();
-    if (params) Object.keys(params).forEach(k => p = p.set(k, params[k]));
-    return this.http.get<T>(`${this.base}${path}`, { params: p });
+  // Calles
+  getCalles(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/calles`);
   }
 
-  post<T>(path: string, body: any): Observable<T> {
-    return this.http.post<T>(`${this.base}${path}`, body);
+  // Vehículos
+  getVehiculos(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/vehiculos`);
   }
 
-  put<T>(path: string, body: any) { return this.http.put<T>(`${this.base}${path}`, body); }
-  delete<T>(path: string) { return this.http.delete<T>(`${this.base}${path}`); }
+  createVehiculo(vehiculo: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/vehiculos`, vehiculo);
+  }
+
+  deleteVehiculo(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/vehiculos/${id}`);
+  }
+
+  // Rutas
+  getRutas(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/rutas`);
+  }
+
+  createRuta(ruta: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/rutas`, ruta);
+  }
+
+  deleteRuta(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/rutas/${id}`);
+  }
+
+  // Recorridos
+  getRecorridos(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/misrecorridos`);
+  }
+
+  iniciarRecorrido(recorrido: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/recorridos/iniciar`, recorrido);
+  }
+
+  finalizarRecorrido(id: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/recorridos/${id}/finalizar`, {});
+  }
+
+  // Posiciones
+  getPosicionesDeRecorrido(recorridoId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/recorridos/${recorridoId}/posiciones`);
+  }
+
+  registrarPosicion(recorridoId: number, posicion: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/recorridos/${recorridoId}/posiciones`, posicion);
+  }
 }
