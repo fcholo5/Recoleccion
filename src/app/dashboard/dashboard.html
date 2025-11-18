@@ -1,13 +1,13 @@
-<div class="dashboard">
+<div class="sidebar">
+  <h3>Rutas</h3>
+  <ul>
+    <li *ngFor="let r of rutas">
+      {{ r.name || r.id }}
+      <button (click)="verRecorrido(r.id)">Ver</button>
+    </li>
+  </ul>
+</div>
 
-  <app-sidebar></app-sidebar>
-
-  <div class="dashboard-main">
-    <app-navbar></app-navbar>
-
-    <div class="dashboard-content">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-
+<div class="content">
+  <app-mapa></app-mapa>
 </div>

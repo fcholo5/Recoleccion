@@ -1,15 +1,12 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-import { SidebarComponent } from '../shared/components/sidebar/sidebar';
-import { NavbarComponent } from '../shared/components/navbar/navbar';
-
+// import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Mapa } from '../mapa/mapa';
 
 @Component({
-  selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterModule, SidebarComponent, NavbarComponent],
+  selector: 'app-dashboard',
+  imports: [CommonModule, Mapa],
   templateUrl: './dashboard.html',
-  styleUrls: ['./dashboard.scss'],
+  styleUrls: ['./dashboard.scss']
 })
-export class DashboardComponent {}
+export class Dashboard {}
